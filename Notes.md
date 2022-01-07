@@ -12,7 +12,5 @@ be brave. branch it, butcher it, back it up.
 
 -------------------
 
- rails generate scaffold Task [name[:string] assigned[:user] start[:datetime] due[:datetime] complete[:datetime]]
-
-* make sure to point users back to tasks with a has_many
+ 
 * next build TaskActivity table, then link to it from tasks and activities

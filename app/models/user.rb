@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :tasks
   validates :name, presence: true
   validate :must_include_contact
   
