@@ -16,7 +16,7 @@
     <%= form.text_field :name %>
   </div>
 
-  <% usernames = [] %>
+  <% usernames = [["Not Assigned", nil]] %>
   <% @users.each do |user| %>
     <% unless user.inactive %>
       <% usernames << [user.name, user.id] %>
