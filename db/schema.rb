@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_183052) do
+ActiveRecord::Schema.define(version: 2022_01_29_220852) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 2022_01_08_183052) do
   create_table "activities_tasks", id: false, force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "activity_id", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "description"
+    t.text "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "events_tasks", id: false, force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "event_id", null: false
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
