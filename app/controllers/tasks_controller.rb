@@ -28,7 +28,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        @task.events.create!(description: "Created Task", detail: "{ id: #{@task.id}, name: #{@task.name}, }") ## will make a linked event
+        Event.task_created(task: @task)
+        
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
@@ -42,7 +43,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        if @task.name_previously_changed?
+        if @task.previous_changes.except(:user_id, :updated_at).present?
           Event.task_info_changed(task: @task)
         end
 
