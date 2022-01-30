@@ -1,4 +1,4 @@
 class Event < ApplicationRecord
-  has_many :users_events
-  has_many :tasks_events
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :tasks
 end

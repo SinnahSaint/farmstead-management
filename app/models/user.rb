@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :tasks
-  has_many :users_events
-  has_many :events, through: :users_events
+  has_and_belongs_to_many :events
 
   validates :name, presence: true
   validate :must_include_contact

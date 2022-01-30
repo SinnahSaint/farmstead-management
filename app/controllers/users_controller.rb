@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.events.create!(description: "Created User", detail: "{ id: #{@user.id}, name: #{@user.name}, }") ## will make a linked event
         format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -38,6 +39,18 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        # OMFG!
+        if @user.name_previously_changed? || @user.email_previously_changed? || @user.phone_previously_changed?
+          @user.events.create!(description: "User Info Changed", detail: "{ id: #{@user.id}, changes: #{@user.previous_changes.except(:inactive, :updated_at)} ")
+        end
+        if @user.inactive_previously_changed?
+          if @user.previous_changes[:inactive].second == true
+            @user.events.create!(description: "User Deactivated", detail: "id: #{@user.id}")
+          else
+            @user.events.create!(description: "User Reactivated", detail: "id: #{@user.id}")
+          end
+        end
+        # OMFG!
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
