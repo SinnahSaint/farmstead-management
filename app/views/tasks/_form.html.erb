@@ -25,7 +25,7 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.select :user_id, options_for_select(usernames) %>
+    <%= form.select :user_id, options_for_select(usernames, @task.user_id) %>
   </div>
 
   <div class="field">

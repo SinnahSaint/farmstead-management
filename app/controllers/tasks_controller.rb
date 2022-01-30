@@ -18,6 +18,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /tasks or /tasks.json
@@ -27,6 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        @task.events.create!(description: "Created Task", detail: "{ id: #{@task.id}, name: #{@task.name}, }") ## will make a linked event
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
@@ -40,6 +42,14 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        if @task.name_previously_changed?
+          Event.task_info_changed(task: @task)
+        end
+
+        if @task.user_id_previously_changed?
+          Event.task_assignment_changed(task: @task)
+        end
+
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
