@@ -27,7 +27,7 @@
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %> |
+<%= link_to 'Back to Task List', tasks_path %> |
 <%= button_to 'Mark as Complete', @task, method: :patch, 
                                          data: { confirm: 'Are you sure?' },
                                          params: { task: { complete: true } } 

@@ -17,3 +17,9 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back to all users', users_path %>
+
+
+<%= button_to 'Deactivate', @task, method: :patch, 
+                                         data: { confirm: 'Are you sure?' },
+                                         params: { task: { inactive: true } } 
+                                         %>
