@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :tasks
 
   def self.user_created(user: )
-    user.events.create!(description: "Created User", detail: "{ id: #{@user.id}, name: #{@user.name}, }")
+    user.events.create!(description: "Created User", detail: "{ id: #{user.id}, name: #{user.name}, }")
   end
 
   def self.user_info_changed(user: )
@@ -17,7 +17,7 @@ class Event < ApplicationRecord
                     "User Reactivated"
                   end
 
-    user.events.create!(description: description, detail: "id: #{@user.id}, name: #{@user.name}")
+    user.events.create!(description: description, detail: "id: #{user.id}, name: #{user.name}")
   end
 
 
@@ -41,5 +41,15 @@ class Event < ApplicationRecord
                     "Task Reassigned"
                   end
     task.events.create!(description: description, detail: "id: #{task.id}, name: #{task.name}, from: #{old_user&.name||"nil"}, to: #{new_user&.name||"nil"}, ")
+  end
+
+  def self.task_status_changed(task: )
+    description = if task.previous_changes[:complete].second == true
+      "Task Completed"
+    else
+      "Task Reactivated"
+    end
+    
+    task.events.create!(description: description, detail: "id: #{task.id}, name: #{task.name}")
   end
 end

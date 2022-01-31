@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         Event.task_created(task: @task)
-        
+
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
@@ -43,12 +43,16 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        if @task.previous_changes.except(:user_id, :updated_at).present?
+        if @task.previous_changes.except(:complete, :user_id, :updated_at).present?
           Event.task_info_changed(task: @task)
         end
 
         if @task.user_id_previously_changed?
           Event.task_assignment_changed(task: @task)
+        end
+
+        if @task.complete_previously_changed?
+          Event.task_status_changed(task: @task)
         end
 
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
@@ -78,6 +82,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :start, :due)
+      params.require(:task).permit(:name, :user_id, :start, :due, :complete)
     end
 end
