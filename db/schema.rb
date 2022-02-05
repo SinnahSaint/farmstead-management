@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_004241) do
+ActiveRecord::Schema.define(version: 2022_02_05_195021) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 2022_01_31_004241) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "events_people", id: false, force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "person_id", null: false
+  end
+
   create_table "events_tasks", id: false, force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "event_id", null: false
@@ -42,15 +47,33 @@ ActiveRecord::Schema.define(version: 2022_01_31_004241) do
     t.integer "event_id", null: false
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.boolean "inactive"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "people_tasks", id: false, force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "task_id", null: false
+  end
+
+  create_table "people_users", id: false, force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "user_id", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
     t.datetime "start"
     t.datetime "due"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "complete", default: false, null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.integer "person_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,5 +85,4 @@ ActiveRecord::Schema.define(version: 2022_01_31_004241) do
     t.boolean "inactive", default: false
   end
 
-  add_foreign_key "tasks", "users"
 end

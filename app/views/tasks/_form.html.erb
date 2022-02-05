@@ -16,16 +16,16 @@
     <%= form.text_field :name %>
   </div>
 
-  <% usernames = [["Not Assigned", nil]] %>
-  <% @users.each do |user| %>
-    <% unless user.inactive %>
-      <% usernames << [user.name, user.id] %>
+  <% names = [["Not Assigned", nil]] %>
+  <% @people.each do |person| %>
+    <% unless person.inactive %>
+      <% names << [person.name, person.id] %>
     <% end %>
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.select :user_id, options_for_select(usernames, @task.user_id) %>
+    <%= form.label :person_id %>
+    <%= form.select :person_id, options_for_select(names, @task.person_id) %>
   </div>
 
   <div class="field">

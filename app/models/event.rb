@@ -1,6 +1,26 @@
 class Event < ApplicationRecord
   has_and_belongs_to_many :users
+  has_and_belongs_to_many :people
   has_and_belongs_to_many :tasks
+
+  def self.person_created(person: )
+    person.events.create!(description: "Created Person", detail: "{ id: #{person.id}, name: #{person.name}, }")
+  end
+
+  def self.person_info_changed(person: )
+    person.events.create!(description: "Person Info Changed", detail: "{ id: #{person.id}, changes: #{person.previous_changes.except(:inactive, :updated_at)} ")
+  end
+
+  def self.person_status_changed(person: )
+    description = if person.previous_changes[:inactive].second == true
+                    "Person Deactivated"
+                  else
+                    "Person Reactivated"
+                  end
+
+    person.events.create!(description: description, detail: "id: #{person.id}, name: #{person.name}")
+  end
+
 
   def self.user_created(user: )
     user.events.create!(description: "Created User", detail: "{ id: #{user.id}, name: #{user.name}, }")
@@ -23,7 +43,7 @@ class Event < ApplicationRecord
 
 
   def self.task_created(task: )
-    task.events.create!(description: "Created Task", detail: "{ id: #{@task.id}, name: #{@task.name}, }") 
+    task.events.create!(description: "Created Task", detail: "{ id: #{task.id}, name: #{task.name}, }") 
   end
 
   def self.task_info_changed(task: )

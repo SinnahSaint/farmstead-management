@@ -13,18 +13,18 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @users = User.all
+    @people = Person.all
   end
 
   # GET /tasks/1/edit
   def edit
-    @users = User.all
+    @people = Person.all
   end
 
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
-    @users = User.all
+    @people = Person.all
 
     respond_to do |format|
       if @task.save
@@ -43,11 +43,11 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        if @task.previous_changes.except(:complete, :user_id, :updated_at).present?
+        if @task.previous_changes.except(:complete, :person_id, :updated_at).present?
           Event.task_info_changed(task: @task)
         end
 
-        if @task.user_id_previously_changed?
+        if @task.person_id_previously_changed?
           Event.task_assignment_changed(task: @task)
         end
 
@@ -82,6 +82,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :start, :due, :complete)
+      params.require(:task).permit(:name, :person_id, :start, :due, :complete)
     end
 end
