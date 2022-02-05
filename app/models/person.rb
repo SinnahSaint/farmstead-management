@@ -1,7 +1,6 @@
 class Person < ApplicationRecord
   has_many :tasks
   has_and_belongs_to_many :events
-  has_and_belongs_to_many :users
 
   validates :name, presence: true
   validate :must_include_contact
