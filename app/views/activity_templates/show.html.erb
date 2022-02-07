@@ -16,13 +16,18 @@
 </p>
 
 <p>
+  <strong>Display example:</strong>
+  Make a helper for this
+</p>
+
+<p>
   <strong>Yield:</strong>
   <%= @activity_template.yield %>
 </p>
 
 <p>
   <strong>Resource subtype:</strong>
-  <%= @activity_template.resource_subtype_id %>
+  <%= @activity_template.resource_subtype.name %>
 </p>
 
 <%= link_to 'Edit', edit_activity_template_path(@activity_template) %> |
