@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Resource Subtypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resource_subtypes.each do |resource_subtype| %>
+      <tr>
+        <td><%= resource_subtype.name %></td>
+        <td><%= resource_subtype.resource_type.name %></td>
+        <td><%= link_to 'Show', resource_subtype %></td>
+        <td><%= link_to 'Edit', edit_resource_subtype_path(resource_subtype) %></td>
+        <td><%= link_to 'Destroy', resource_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resource Subtype', new_resource_subtype_path %>

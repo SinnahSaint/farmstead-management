@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_205753) do
+ActiveRecord::Schema.define(version: 2022_02_07_225802) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2022_02_05_205753) do
   create_table "activities_tasks", id: false, force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "activity_id", null: false
+  end
+
+  create_table "activity_templates", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "default_values"
+    t.text "yield"
+    t.integer "resource_subtype_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_subtype_id"], name: "index_activity_templates_on_resource_subtype_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -56,6 +67,31 @@ ActiveRecord::Schema.define(version: 2022_02_05_205753) do
     t.integer "task_id", null: false
   end
 
+  create_table "resource_subtypes", force: :cascade do |t|
+    t.string "name"
+    t.integer "resource_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type_id"], name: "index_resource_subtypes_on_resource_type_id"
+  end
+
+  create_table "resource_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.date "date_of_birth"
+    t.date "date_on_farm"
+    t.integer "resource_subtype_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_subtype_id"], name: "index_resources_on_resource_subtype_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.datetime "start"
@@ -66,4 +102,7 @@ ActiveRecord::Schema.define(version: 2022_02_05_205753) do
     t.integer "person_id"
   end
 
+  add_foreign_key "activity_templates", "resource_subtypes"
+  add_foreign_key "resource_subtypes", "resource_types"
+  add_foreign_key "resources", "resource_subtypes"
 end

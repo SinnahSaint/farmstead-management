@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @activity_template.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @activity_template.description %>
+</p>
+
+<p>
+  <strong>Default values:</strong>
+  <%= @activity_template.default_values %>
+</p>
+
+<p>
+  <strong>Yield:</strong>
+  <%= @activity_template.yield %>
+</p>
+
+<p>
+  <strong>Resource subtype:</strong>
+  <%= @activity_template.resource_subtype_id %>
+</p>
+
+<%= link_to 'Edit', edit_activity_template_path(@activity_template) %> |
+<%= link_to 'Back', activity_templates_path %>

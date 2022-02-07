@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resource.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @resource.description %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @resource.date_of_birth %>
+</p>
+
+<p>
+  <strong>Date on farm:</strong>
+  <%= @resource.date_on_farm %>
+</p>
+
+<p>
+  <strong>Resource subtype:</strong>
+  <%= @resource.resource_subtype.name %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

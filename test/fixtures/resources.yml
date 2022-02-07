@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  date_of_birth: 2022-02-07
+  date_on_farm: 2022-02-07
+  resource_subtype: one
+
+two:
+  name: MyString
+  description: MyText
+  date_of_birth: 2022-02-07
+  date_on_farm: 2022-02-07
+  resource_subtype: two
