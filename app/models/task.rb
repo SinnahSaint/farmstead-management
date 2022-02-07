@@ -5,6 +5,7 @@ class Task < ApplicationRecord
 
   has_many :activities_tasks 
   has_many :activities, through: :activities_tasks
+  has_many :resources, through: :activities
 
   validates :name, presence: true
 end

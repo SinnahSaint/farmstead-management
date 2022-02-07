@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 2022_02_05_205753) do
     t.integer "task_id", null: false
   end
 
+  create_table "resource_maintypes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.datetime "start"

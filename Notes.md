@@ -8,6 +8,3 @@ be brave. branch it, butcher it, back it up.
 
 
 -------------------
-
- 
-* next build TaskActivity table, then link to it from tasks and activities
