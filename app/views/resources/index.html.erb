@@ -21,7 +21,7 @@
         <td><%= resource.description %></td>
         <td><%= resource.date_of_birth %></td>
         <td><%= resource.date_on_farm %></td>
-        <td><%= resource.resource_subtype_id %></td>
+        <td><%= resource.resource_subtype.name %></td>
         <td><%= link_to 'Show', resource %></td>
         <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
         <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>

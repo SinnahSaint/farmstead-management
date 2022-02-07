@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Resource type</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @resource_subtypes.each do |resource_subtype| %>
       <tr>
         <td><%= resource_subtype.name %></td>
-        <td><%= resource_subtype.resource_type_id %></td>
+        <td><%= resource_subtype.resource_type.name %></td>
         <td><%= link_to 'Show', resource_subtype %></td>
         <td><%= link_to 'Edit', edit_resource_subtype_path(resource_subtype) %></td>
         <td><%= link_to 'Destroy', resource_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>

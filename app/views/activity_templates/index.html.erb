@@ -21,7 +21,7 @@
         <td><%= activity_template.description %></td>
         <td><%= activity_template.default_values %></td>
         <td><%= activity_template.yield %></td>
-        <td><%= activity_template.resource_subtype_id %></td>
+        <td><%= activity_template.resource_subtype.name %></td>
         <td><%= link_to 'Show', activity_template %></td>
         <td><%= link_to 'Edit', edit_activity_template_path(activity_template) %></td>
         <td><%= link_to 'Destroy', activity_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>

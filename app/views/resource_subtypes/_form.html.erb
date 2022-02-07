@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :resource_type_id %>
-    <%= form.text_field :resource_type_id %>
+    <%= form.collection_select :resource_type_id, ResourceType.order(:name), :id, :name, include_blank: true %>
   </div>
 
   <div class="actions">
