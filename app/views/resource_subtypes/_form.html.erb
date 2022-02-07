@@ -1,0 +1,27 @@
+<%= form_with(model: resource_subtype) do |form| %>
+  <% if resource_subtype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(resource_subtype.errors.count, "error") %> prohibited this resource_subtype from being saved:</h2>
+
+      <ul>
+        <% resource_subtype.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resource_type_id %>
+    <%= form.text_field :resource_type_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

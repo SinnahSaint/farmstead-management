@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :activity_templates
+  resources :resources
+  resources :resource_subtypes
+  resources :resource_types
   resources :people
   resources :events
   resources :tasks
