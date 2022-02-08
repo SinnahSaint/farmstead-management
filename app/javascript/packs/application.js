@@ -24,7 +24,7 @@ window.addEventListener("turbolinks:load", () => {
       const type = resource_type_control.selectedOptions[0].text;
       const options = resource_subtype_control_copy.querySelectorAll(`optgroup[label='${type}'] option`);
       
-      if (options) {
+      if (options.length > 0) {
         const new_options = Array.from(options).map((opt)=>opt.cloneNode(true));
         resource_subtype_control.replaceChildren(...new_options);
         resource_subtype_control.parentElement.style.display = 'block';
