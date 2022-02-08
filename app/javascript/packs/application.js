@@ -3,7 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
+import Rails, { $ } from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
@@ -11,3 +11,30 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+window.addEventListener("turbolinks:load", () => {
+
+  const resource_subtype_control = document.querySelector('#activity_template_resource_subtype_id');
+  if (resource_subtype_control) {
+    resource_subtype_control.parentElement.style.display = 'none';
+    const resource_subtype_control_copy = resource_subtype_control.cloneNode(true);
+    const resource_type_control = document.querySelector('#activity_template_resource_type_id');
+
+    resource_type_control.addEventListener("change", () => {
+      const type = resource_type_control.selectedOptions[0].text;
+      const options = resource_subtype_control_copy.querySelectorAll(`optgroup[label='${type}'] option`);
+      
+      if (options) {
+        const new_options = Array.from(options).map((opt)=>opt.cloneNode(true));
+        resource_subtype_control.replaceChildren(...new_options);
+        resource_subtype_control.parentElement.style.display = 'block';
+      } else {
+        resource_subtype_control.replaceChildren([]);
+        resource_subtype_control.parentElement.style.display = 'none';
+      }
+    });
+  }
+
+});
+
+
