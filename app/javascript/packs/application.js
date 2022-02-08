@@ -12,13 +12,17 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-window.addEventListener("turbolinks:load", () => {
+// ## ASK MEGAN ## //
 
-  const resource_subtype_control = document.querySelector('#activity_template_resource_subtype_id');
+window.addEventListener("turbolinks:load", () => {
+  const page_type = ('#activity_template_resource_type_id'||'resource_resource_type_id');
+  const page_subtype = ('#activity_template_resource_subtype_id'||'#resource_resource_subtype_id');
+
+  const resource_subtype_control = document.querySelector(page_subtype);
   if (resource_subtype_control) {
     resource_subtype_control.parentElement.style.display = 'none';
     const resource_subtype_control_copy = resource_subtype_control.cloneNode(true);
-    const resource_type_control = document.querySelector('#activity_template_resource_type_id');
+    const resource_type_control = document.querySelector(page_type);
 
     resource_type_control.addEventListener("change", () => {
       const type = resource_type_control.selectedOptions[0].text;
