@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @resources.each do |resource| %>
+    <% @resources.order(:resource_subtype_id).order(:name).each do |resource| %>
       <tr>
         <td><%= resource.name %></td>
         <td><%= resource.description %></td>

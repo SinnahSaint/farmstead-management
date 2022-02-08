@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources or /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.includes(:resource_subtype).all
   end
 
   # GET /resources/1 or /resources/1.json
@@ -65,6 +65,6 @@ class ResourcesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def resource_params
-      params.require(:resource).permit(:name, :description, :date_of_birth, :date_on_farm, :resource_type_id, :resource_subtype_id)
+      params.require(:resource).permit(:name, :description, :date_of_birth, :date_on_farm, :resource_subtype_id)
     end
 end

@@ -65,6 +65,6 @@ class ActivityTemplatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_template_params
-      params.require(:activity_template).permit(:name, :description, :default_values, :yield, :resource_type_id, :resource_subtype_id)
+      params.require(:activity_template).permit(:name, :description, :default_values, :yield, :resource_subtype_id)
     end
 end
