@@ -3,7 +3,7 @@ class ResourceSubtypesController < ApplicationController
 
   # GET /resource_subtypes or /resource_subtypes.json
   def index
-    @resource_subtypes = ResourceSubtype.all
+    @resource_subtypes = ResourceSubtype.includes(:resource_type).all
   end
 
   # GET /resource_subtypes/1 or /resource_subtypes/1.json

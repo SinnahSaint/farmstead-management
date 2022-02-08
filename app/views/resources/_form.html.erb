@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :resource_type_id %>
-    <%= form.collection_select :resource_type_id, ResourceType.order(:name), :id, :name, include_blank: true %>
+    <%= form.collection_select :resource_type_id, ResourceType.order(:name), :id, :name, prompt: "Choose a Type" %>
   </div>
 
   <div class="field">
     <%= form.label :resource_subtype_id %>
-    <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name, include_blank: true %>
+    <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name%>
   </div>
 
   <div class="field">

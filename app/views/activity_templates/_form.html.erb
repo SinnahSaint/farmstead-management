@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :resource_subtype_id %>
-    <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name, prompt: "Choose a Subtype" %>
+    <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name %>
   </div>
 
   <div class="field">

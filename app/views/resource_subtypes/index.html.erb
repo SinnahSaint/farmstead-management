@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @resource_subtypes.each do |resource_subtype| %>
+    <% @resource_subtypes.order(:resource_type_id).each do |resource_subtype| %>
       <tr>
         <td><%= resource_subtype.name %></td>
         <td><%= resource_subtype.resource_type.name %></td>
