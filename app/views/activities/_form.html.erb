@@ -11,20 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%# these fields should be set by the Resource requesting 
+  this form so they don't need to show %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+  <%# <div class="field"> %>
+    <%# <%= form.label :resource_subtype_id %> %>
+    <%# <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name %> %>
+  <%# </div> %>
 
-  <div class="field">
-    <%= form.label :inactive %>
-    <%= form.check_box :inactive %>
-  </div>
+  <%# <div class="field"> %>
+    <%# <%= form.label :resource_id %> %>
+    <%# <%= form.grouped_collection_select :resource_id, ResourceSubtype.order(:name), :resources, :name, :id, :name %> %>
+  <%# </div> %>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :activity_template_id %> %>
+    <%# <%= form.grouped_collection_select :activity_template_id, ResourceSubtype.order(:name), :activity_templates, :name, :id, :name %> %>
+  <%# </div> %>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :inactive %> %>
+    <%# <%= form.check_box :inactive %> %>
+  <%# </div> %>
+
+<%# add some display stuff in here to show the template's info for editing %>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :name %> %>
+    <%# <%= form.text_field :name %> %>
+  <%# </div> %>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :description %> %>
+    <%# <%= form.text_area :description %> %>
+  <%# </div> %>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :default_values %> %>
+    <%# <%= form.text_area :default_values %> %>
+  <%# </div> %>
 
   <div class="actions">
     <%= form.submit %>

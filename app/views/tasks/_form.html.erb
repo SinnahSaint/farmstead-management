@@ -11,10 +11,35 @@
     </div>
   <% end %>
 
+  <%# <div class="field"> %>
+    <%# <%= form.label :name %> %>
+    <%# <%= form.text_field :name %> %>
+  <%# </div> %>
+
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :resource_type_id %>
+    <%= form.collection_select :resource_type_id, ResourceType.order(:name), :id, :name, prompt: "Choose a Type" %>
   </div>
+
+  <div class="field">
+    <%= form.label :resource_subtype_id %>
+    <%= form.grouped_collection_select :resource_subtype_id, ResourceType.order(:name), :resource_subtypes, :name, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resource_id %>
+    <%= form.grouped_collection_select :resource_id, ResourceSubtype.order(:name), :resources, :name, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :activity_id %>
+    <%= form.grouped_collection_select :activity_id, Resource.order(:name), :activities, :name, :id, :name %>
+  </div>
+
+  <%# <div class="field"> %>
+    <%# <%= form.label :notes %> %>
+    <%# <%= form.text_box :notes %> %>
+  <%# </div> %>
 
   <% names = [["Not Assigned", nil]] %>
   <% @people.each do |person| %>
