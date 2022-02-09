@@ -15,7 +15,11 @@ ActiveStorage.start()
 function connectResourceTypeDropdowns(owner) {
   const resource_subtype_control = document.querySelector(`#${owner}_resource_subtype_id`)
   if (resource_subtype_control) {
+    
     resource_subtype_control.parentElement.style.display = 'none';
+    // if (owner === "task"){
+    //   resource_control.parentElement.style.display = 'none';
+    // }
     const resource_subtype_control_copy = resource_subtype_control.cloneNode(true);
     const resource_type_control = document.querySelector(`#${owner}_resource_type_id`)
 
@@ -32,12 +36,32 @@ function connectResourceTypeDropdowns(owner) {
         resource_subtype_control.parentElement.style.display = 'none';
       }
     });
+    // if (owner === 'task'){
+    //   resource_subtype_control.addEventListener("change", () => {
+    //     const subtype = resource_subtype_control.selectedOptions[0].text;
+    //     const options = resource_control_copy.querySelectorAll(`optgroup[label='${subtype}'] option`);
+        
+    //     if (options.length > 0) {
+    //       const new_options = Array.from(options).map((opt)=>opt.cloneNode(true));
+    //       resource_control.replaceChildren(...new_options);
+    //       resource_control.parentElement.style.display = 'block';
+    //     } else {
+    //       resource_control.replaceChildren([]);
+    //       resource_control.parentElement.style.display = 'none';
+    //     }
+    //   });
+    }
   }
 }
+// !!TO DO!! //
+// This is not nearly complete as activity templates, activities, 
+// resources, and tasks all need a version of this.
 
 window.addEventListener("turbolinks:load", () => {
   connectResourceTypeDropdowns("activity_template");
+  // connectResourceTypeDropdowns("activity");
   connectResourceTypeDropdowns("resource");
+  // connectResourceTypeDropdowns("task");
 });
 
 
