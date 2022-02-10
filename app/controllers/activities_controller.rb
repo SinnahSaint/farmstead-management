@@ -25,6 +25,8 @@ class ActivitiesController < ApplicationController
 
     respond_to do |format|
       if @activity.save
+        Event.activity_created(activity: @activity)
+
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
         format.json { render :show, status: :created, location: @activity }
       else
@@ -38,6 +40,15 @@ class ActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if @activity.update(activity_params)
+
+        if @activity.previous_changes.except(:inactive, :updated_at).present?
+          Event.activity_info_changed(activity: @activity)
+        end
+
+        if @activity.inactive_previously_changed?
+          Event.activity_status_changed(activity: @activity)
+        end
+
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully updated." }
         format.json { render :show, status: :ok, location: @activity }
       else

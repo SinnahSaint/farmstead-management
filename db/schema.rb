@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_154516) do
+ActiveRecord::Schema.define(version: 2022_02_10_170405) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -42,16 +42,14 @@ ActiveRecord::Schema.define(version: 2022_02_10_154516) do
     t.text "detail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "events_people", id: false, force: :cascade do |t|
-    t.integer "event_id", null: false
-    t.integer "person_id", null: false
-  end
-
-  create_table "events_tasks", id: false, force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "event_id", null: false
+    t.integer "person_id"
+    t.integer "task_id"
+    t.integer "activity_id"
+    t.integer "resource_id"
+    t.index ["activity_id"], name: "activity_id_on_event_id"
+    t.index ["person_id"], name: "person_id_on_event_id"
+    t.index ["resource_id"], name: "resource_id_on_event_id"
+    t.index ["task_id"], name: "task_id_on_event_id"
   end
 
   create_table "people", force: :cascade do |t|

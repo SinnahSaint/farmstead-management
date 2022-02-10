@@ -1,8 +1,27 @@
 class Event < ApplicationRecord
   belongs_to :person, optional: true
   belongs_to :task, optional: true
-  # belongs_to :resource, optional: true
-  # belongs_to :activity, optional: true
+  belongs_to :activity, optional: true
+  belongs_to :resource, optional: true
+
+  def self.activity_created(activity: )
+    activity.events.create!(description: "Created Activity", detail: "{ id: #{activity.id}, name: #{activity.name}, resource: #{activity.resource.name} }")
+  end
+
+  def self.activity_info_changed(activity: )
+    activity.events.create!(description: "Activity Info Changed", detail: "{ id: #{activity.id}, changes: #{activity.previous_changes.except(:inactive, :updated_at)} ")
+  end
+
+  def self.activity_status_changed(activity: )
+    description = if activity.previous_changes[:inactive].second == true
+                    "Activity Deactivated"
+                  else
+                    "Activity Reactivated"
+                  end
+
+    activity.events.create!(description: description, detail: "id: #{activity.id}, name: #{activity.name}")
+  end
+
 
   def self.person_created(person: )
     person.events.create!(description: "Created Person", detail: "{ id: #{person.id}, name: #{person.name}, }")
