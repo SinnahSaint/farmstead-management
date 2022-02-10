@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_170405) do
+ActiveRecord::Schema.define(version: 2022_02_10_173825) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_170405) do
     t.integer "resource_subtype_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "off_farm_date"
     t.index ["resource_subtype_id"], name: "index_resources_on_resource_subtype_id"
   end
 

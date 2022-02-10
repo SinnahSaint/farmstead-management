@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
-  belongs_to :person, optional: true
-  belongs_to :task, optional: true
   belongs_to :activity, optional: true
+  belongs_to :person, optional: true
   belongs_to :resource, optional: true
+  belongs_to :task, optional: true
 
   def self.activity_created(activity: )
     activity.events.create!(description: "Created Activity", detail: "{ id: #{activity.id}, name: #{activity.name}, resource: #{activity.resource.name} }")
@@ -22,7 +22,6 @@ class Event < ApplicationRecord
     activity.events.create!(description: description, detail: "id: #{activity.id}, name: #{activity.name}")
   end
 
-
   def self.person_created(person: )
     person.events.create!(description: "Created Person", detail: "{ id: #{person.id}, name: #{person.name}, }")
   end
@@ -41,6 +40,23 @@ class Event < ApplicationRecord
     person.events.create!(description: description, detail: "id: #{person.id}, name: #{person.name}")
   end
 
+  def self.resource_created(resource: )
+    resource.events.create!(description: "Created Resource", detail: "{ id: #{resource.id}, name: #{resource.name}, subtype: #{resource.subtype.name} }")
+  end
+
+  def self.resource_info_changed(activity: )
+    resource.events.create!(description: "Resource Info Changed", detail: "{ id: #{resource.id}, changes: #{resource.previous_changes.except(:inactive, :updated_at)} ")
+  end
+
+  def self.resource_status_changed(resource: )
+    description = if resource.previous_changes[:inactive].second == true
+                    "Resource Deactivated"
+                  else
+                    "Resource Reactivated Somehow?!"
+                  end
+
+    resource.events.create!(description: description, detail: "id: #{resource.id}, name: #{resource.name}, date off farm: #{resource.off_farm_date}")
+  end
 
   def self.task_created(task: )
     task.events.create!(description: "Created Task", detail: "{ id: #{task.id}, name: #{task.name}, }") 
@@ -69,7 +85,7 @@ class Event < ApplicationRecord
     else
       "Task Reactivated"
     end
-    
+  
     task.events.create!(description: description, detail: "id: #{task.id}, name: #{task.name}")
   end
 end

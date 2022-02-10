@@ -25,6 +25,8 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
+        Event.resource_created(resource: @resource)
+
         format.html { redirect_to resource_url(@resource), notice: "Resource was successfully created." }
         format.json { render :show, status: :created, location: @resource }
       else
@@ -38,6 +40,16 @@ class ResourcesController < ApplicationController
   def update
     respond_to do |format|
       if @resource.update(resource_params)
+
+        if @resource.previous_changes.except(:inactive, :updated_at).present?
+          Event.resource_info_changed(resource: @resource)
+        end
+
+        if @resource.inactive_previously_changed?
+          @resource.off_farm_date = 
+          Event.resource_status_changed(resource: @resource)
+        end
+
         format.html { redirect_to resource_url(@resource), notice: "Resource was successfully updated." }
         format.json { render :show, status: :ok, location: @resource }
       else

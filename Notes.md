@@ -11,11 +11,6 @@ be brave. branch it, butcher it, back it up.
 
 ## ToDo
 
-# Events for Resources
-  * edit event model so there's something to call
-  * edit resource controler to call the events on create, edit, etc
-  * make sure db connects
-
 # When making a resource(on create, not edit)
   * auto-make appropriate activities based on templates (this one will take some doing)
     * Activities creation requires the template, and resource(template provides a name & details that can be edited)
