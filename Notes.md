@@ -11,6 +11,8 @@ be brave. branch it, butcher it, back it up.
 
 ## ToDo
 
+make the new activity load with other unless provided with a template to allow for creating new activities on the form so I can test this stuff
+
 # When making a resource(on create, not edit)
   * auto-make appropriate activities based on templates (this one will take some doing)
     * Activities creation requires the template, and resource(template provides a name & details that can be edited)

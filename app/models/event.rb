@@ -41,7 +41,7 @@ class Event < ApplicationRecord
   end
 
   def self.resource_created(resource: )
-    resource.events.create!(description: "Created Resource", detail: "{ id: #{resource.id}, name: #{resource.name}, subtype: #{resource.subtype.name} }")
+    resource.events.create!(description: "Created Resource", detail: "{ id: #{resource.id}, name: #{resource.name}, subtype: #{resource.resource_subtype_id} }")
   end
 
   def self.resource_info_changed(activity: )
