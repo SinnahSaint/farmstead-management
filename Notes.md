@@ -39,3 +39,8 @@ be brave. branch it, butcher it, back it up.
   * edit event model so there's something to call
   * edit resource controler to call the events on create, edit, etc
   * make events_resources join_table
+
+
+* Once all that is done:
+  * look at the javascript & css again and make the forms pretty.
+  * css libraries/frameworks make that easier. (look at boodstrap, tailwind, etc)
