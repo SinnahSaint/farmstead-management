@@ -11,13 +11,7 @@ be brave. branch it, butcher it, back it up.
 
 ## ToDo
 
-* Activities table needs the following added:
-    t.text "default_values" 
-    t.text "yield"
-    t.integer "resource_id"
-      t.index ["resource_id"], name: "resource_id_on_activity_id"
-    t.integer "activity_template_id"
-      t.index ["activity_template_id"], name: "activity_template_id_on_activity_id"
+* Gotta clean up the db and connections
 
 * Events for Activities
   * edit event model so there's something to call
@@ -32,14 +26,15 @@ be brave. branch it, butcher it, back it up.
     * with buttons to edit or deactivate
     * active or not shown next to activity (x or check?)
 
-* Tasks require same columns as activities+person_id+notes
-  * task completed event incl. activity_id, person_id, resource_id, yield, notes
-
 * Events for Resources
   * edit event model so there's something to call
   * edit resource controler to call the events on create, edit, etc
   * make events_resources join_table
 
+* Tasks require activity_id+person_id+notes
+  * task completed event incl. activity_id, person_id, resource_id, yield, notes
+  * belongs_to activity, -> { includes :resource }
+    belongs_to person
 
 * Once all that is done:
   * look at the javascript & css again and make the forms pretty.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_225802) do
+ActiveRecord::Schema.define(version: 2022_02_10_154516) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 2022_02_07_225802) do
     t.boolean "inactive"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "activities_tasks", id: false, force: :cascade do |t|
-    t.integer "task_id", null: false
-    t.integer "activity_id", null: false
+    t.text "default_values"
+    t.text "yield"
+    t.integer "resource_id"
+    t.integer "activity_template_id"
+    t.index ["activity_template_id"], name: "activity_template_id_on_activity_id"
+    t.index ["resource_id"], name: "resource_id_on_activity_id"
   end
 
   create_table "activity_templates", force: :cascade do |t|
@@ -100,6 +101,9 @@ ActiveRecord::Schema.define(version: 2022_02_07_225802) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "complete", default: false, null: false
     t.integer "person_id"
+    t.integer "activity_id"
+    t.index ["activity_id"], name: "index_tasks_on_activity_id"
+    t.index ["person_id"], name: "index_tasks_on_person_id"
   end
 
   add_foreign_key "activity_templates", "resource_subtypes"

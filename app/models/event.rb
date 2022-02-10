@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
-  has_and_belongs_to_many :people
-  has_and_belongs_to_many :tasks
+  belongs_to :person, optional: true
+  belongs_to :task, optional: true
+  # belongs_to :resource, optional: true
+  # belongs_to :activity, optional: true
 
   def self.person_created(person: )
     person.events.create!(description: "Created Person", detail: "{ id: #{person.id}, name: #{person.name}, }")
