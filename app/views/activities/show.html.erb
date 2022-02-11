@@ -11,9 +11,19 @@
 </p>
 
 <p>
+  <strong>Default Values:</strong>
+  <%= @activity.default_values %>
+</p>
+
+<p>
+  <strong>Results:</strong>
+  <%= @activity.results %>
+</p>
+
+<p>
   <strong>Inactive:</strong>
   <%= @activity.inactive %>
 </p>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back to all Activities', activities_path %>
+<%= link_to 'Back', resource_path(@activity.resource) %>

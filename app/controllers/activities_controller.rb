@@ -26,7 +26,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       if @activity.save
         Event.activity_created(activity: @activity)
-
+        
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
         format.json { render :show, status: :created, location: @activity }
       else
@@ -76,6 +76,6 @@ class ActivitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:activity_template_id, :name, :description, :default_values, :yield, :inactive)
+      params.require(:activity).permit(:activity_template_id, :resource_id, :name, :description, :default_values, :results, :inactive)
     end
 end

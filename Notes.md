@@ -11,17 +11,8 @@ be brave. branch it, butcher it, back it up.
 
 ## ToDo
 
-make the new activity load with other unless provided with a template to allow for creating new activities on the form so I can test this stuff
-
-# When making a resource(on create, not edit)
-  * auto-make appropriate activities based on templates (this one will take some doing)
-    * Activities creation requires the template, and resource(template provides a name & details that can be edited)
-  * resource show page includes it's activities names & filled descriptions 
-    * with buttons to edit or deactivate
-    * active or not shown next to activity (x or check?)
-
 # Tasks require activity_id+person_id+notes
-  * task completed event incl. activity_id, person_id, resource_id, yield, notes
+  * task completed event incl. activity_id, person_id, resource_id, results, notes
   * belongs_to activity, -> { includes :resource }
     belongs_to person
 

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Resource subtype:</strong>
+  <%= @resource.resource_subtype.name %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @resource.name %>
 </p>
@@ -21,9 +26,36 @@
 </p>
 
 <p>
-  <strong>Resource subtype:</strong>
-  <%= @resource.resource_subtype.name %>
+  <strong>Date on farm:</strong>
+  <%= @resource.date_on_farm %>
 </p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Active?</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resource.activities.order(:inactive).each do |activity| %>
+      <tr>
+        <td><%= activity.inactive %></td>
+        <td><%= activity.name %></td>
+        <td><%= activity.description %></td>
+        <td><%= link_to 'Edit Details', edit_activity_path(activity) %></td>
+        <td><%= link_to 'Deactivate', activity, method: :patch, 
+                                         data: { confirm: 'Are you sure?' },
+                                         params: { person: { inactive: true } } 
+                                         %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>
