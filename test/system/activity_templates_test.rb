@@ -18,7 +18,7 @@ class ActivityTemplatesTest < ApplicationSystemTestCase
     fill_in "Description", with: @activity_template.description
     fill_in "Name", with: @activity_template.name
     fill_in "Resource subtype", with: @activity_template.resource_subtype_id
-    fill_in "Yield", with: @activity_template.yield
+    fill_in "Results", with: @activity_template.results
     click_on "Create Activity template"
 
     assert_text "Activity template was successfully created"
@@ -33,7 +33,7 @@ class ActivityTemplatesTest < ApplicationSystemTestCase
     fill_in "Description", with: @activity_template.description
     fill_in "Name", with: @activity_template.name
     fill_in "Resource subtype", with: @activity_template.resource_subtype_id
-    fill_in "Yield", with: @activity_template.yield
+    fill_in "Results", with: @activity_template.results
     click_on "Update Activity template"
 
     assert_text "Activity template was successfully updated"

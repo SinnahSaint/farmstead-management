@@ -4,12 +4,12 @@ one:
   name: MyString
   description: MyText
   default_values: MyText
-  yield: MyText
+  results: MyText
   resource_subtype: one
 
 two:
   name: MyString
   description: MyText
   default_values: MyText
-  yield: MyText
+  results: MyText
   resource_subtype: two

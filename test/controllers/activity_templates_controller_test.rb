@@ -17,7 +17,7 @@ class ActivityTemplatesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create activity_template" do
     assert_difference('ActivityTemplate.count') do
-      post activity_templates_url, params: { activity_template: { default_values: @activity_template.default_values, description: @activity_template.description, name: @activity_template.name, resource_subtype_id: @activity_template.resource_subtype_id, yield: @activity_template.yield } }
+      post activity_templates_url, params: { activity_template: { default_values: @activity_template.default_values, description: @activity_template.description, name: @activity_template.name, resource_subtype_id: @activity_template.resource_subtype_id, results: @activity_template.results } }
     end
 
     assert_redirected_to activity_template_url(ActivityTemplate.last)
@@ -34,7 +34,7 @@ class ActivityTemplatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update activity_template" do
-    patch activity_template_url(@activity_template), params: { activity_template: { default_values: @activity_template.default_values, description: @activity_template.description, name: @activity_template.name, resource_subtype_id: @activity_template.resource_subtype_id, yield: @activity_template.yield } }
+    patch activity_template_url(@activity_template), params: { activity_template: { default_values: @activity_template.default_values, description: @activity_template.description, name: @activity_template.name, resource_subtype_id: @activity_template.resource_subtype_id, results: @activity_template.results } }
     assert_redirected_to activity_template_url(@activity_template)
   end
 

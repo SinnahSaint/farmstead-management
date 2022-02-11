@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_173825) do
+ActiveRecord::Schema.define(version: 2022_02_10_234139) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_173825) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "default_values"
-    t.text "yield"
+    t.text "results"
     t.integer "resource_id"
     t.integer "activity_template_id"
     t.index ["activity_template_id"], name: "activity_template_id_on_activity_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_173825) do
     t.string "name"
     t.text "description"
     t.text "default_values"
-    t.text "yield"
+    t.text "results"
     t.integer "resource_subtype_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_173825) do
     t.boolean "complete", default: false, null: false
     t.integer "person_id"
     t.integer "activity_id"
+    t.text "results"
     t.index ["activity_id"], name: "index_tasks_on_activity_id"
     t.index ["person_id"], name: "index_tasks_on_person_id"
   end
