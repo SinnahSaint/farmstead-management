@@ -50,7 +50,7 @@ function connectResourceTypeDropdowns(owner) {
     //       resource_control.parentElement.style.display = 'none';
     //     }
     //   });
-    }
+    //  }
   }
 }
 // !!TO DO!! //
